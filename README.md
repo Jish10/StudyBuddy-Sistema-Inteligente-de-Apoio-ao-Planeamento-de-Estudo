@@ -18,7 +18,7 @@ python -m scripts.train_boost --csv data/StudentPerformanceFactors.csv --out art
 ```powershell
 python -m scripts.train_boost --csv data/StudentPerformanceFactors.csv --out artifacts --max_iter 6000 --max_depth 10 --learning_rate 0.03 --min_samples_leaf 20
 
-1. Introduction
+### 1. Introduction
 
 StudyBuddy is an intelligent decision-support system designed to help students plan their study time more effectively across multiple courses (units).
 
