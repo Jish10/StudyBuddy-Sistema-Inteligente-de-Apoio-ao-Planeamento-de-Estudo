@@ -1,0 +1,28 @@
+{
+  "rmse": 2.5091300271950154,
+  "r2": 0.5546019657576877,
+  "features": [
+    "Hours_Studied",
+    "Attendance",
+    "Previous_Scores",
+    "Sleep_Hours",
+    "Tutoring_Sessions",
+    "Physical_Activity"
+  ],
+  "monotonic_cst": [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0
+  ],
+  "params": {
+    "max_iter": 6000,
+    "learning_rate": 0.03,
+    "max_depth": 10,
+    "l2_regularization": 1.0,
+    "min_samples_leaf": 20,
+    "early_stopping": false
+  }
+}
