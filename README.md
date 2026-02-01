@@ -17,233 +17,235 @@ python -m scripts.train_boost --csv data/StudentPerformanceFactors.csv --out art
 ### Mais pesado
 ```powershell
 python -m scripts.train_boost --csv data/StudentPerformanceFactors.csv --out artifacts --max_iter 6000 --max_depth 10 --learning_rate 0.03 --min_samples_leaf 20
+```
 
 ### 1. Introduction
 
-StudyBuddy is an intelligent decision-support system designed to help students plan their study time more effectively across multiple courses (units).
+ StudyBuddy is an intelligent decision-support system designed to help students plan their study time more effectively across multiple courses (units).
 
-Instead of relying on intuition, the system uses Artificial Intelligence techniques to:
+ Instead of relying on intuition, the system uses Artificial Intelligence techniques to:
 
-predict academic performance,
+ predict academic performance,
 
-simulate the impact of study hours,
+ simulate the impact of study hours,
 
-and recommend how to allocate limited study time rationally.
+ and recommend how to allocate limited study time rationally.
 
-This project was developed in the context of an Artificial Intelligence course, inspired by concepts taught in CS188 – Introduction to Artificial Intelligence.
+ This project was developed in the context of an Artificial Intelligence course, inspired by concepts taught in CS188 – Introduction to Artificial Intelligence.
 
-2. Motivation
+### 2. Motivation
 
-Students often face questions such as:
+ Students often face questions such as:
 
-Which subject should I study more?
+ Which subject should I study more?
 
-Will studying more hours actually improve my grade?
+ Will studying more hours actually improve my grade?
 
-How should I divide my time if I have many courses?
+ How should I divide my time if I have many courses?
 
-Most existing tools provide static schedules or simple averages.
-StudyBuddy addresses this gap by using data-driven learning and decision-making under uncertainty.
+ Most existing tools provide static schedules or simple averages.
+ StudyBuddy addresses this gap by using data-driven learning and decision-making under uncertainty.
 
-3. Project Objectives
+### 3. Project Objectives
 
-The main objectives of this project are:
+ The main objectives of this project are:
 
-Use real educational data to learn how study behavior affects grades
+ Use real educational data to learn how study behavior affects grades
 
-Predict future grades based on user input
+ Predict future grades based on user input
 
-Allocate study hours intelligently when time is limited
+ Allocate study hours intelligently when time is limited
 
-Apply AI concepts in a realistic and explainable way
+ Apply AI concepts in a realistic and explainable way
 
-4. Dataset
+### 4. Dataset
 
-The system is trained using the Student Performance Factors dataset, which includes:
+ The system is trained using the Student Performance Factors dataset, which includes:
 
-Hours studied
+ Hours studied
 
-Attendance
+ Attendance
 
-Previous exam scores
+ Previous exam scores
 
-Academic and contextual factors
+ Academic and contextual factors
 
-Final exam results
+ Final exam results
 
-Using a real dataset ensures that predictions are grounded in realistic academic patterns.
+ Using a real dataset ensures that predictions are grounded in realistic academic patterns.
 
-5. System Overview
+### 5. System Overview
 
-At a high level, the system works in three stages:
+ At a high level, the system works in three stages:
 
-Prediction
-A supervised learning model estimates the expected future grade of a student based on:
+ Prediction
+ A supervised learning model estimates the expected future grade of a student based on:
 
-weekly study hours,
+ weekly study hours,
 
-attendance,
+ attendance,
 
-previous grade.
+ previous grade.
 
-Decision Making
-A Multi-Armed Bandit algorithm (UCB) decides how to distribute available study hours across different courses.
+ Decision Making
+ A Multi-Armed Bandit algorithm (UCB) decides how to distribute available study hours across different courses.
 
-Visualization
-A graphical interface shows:
+ Visualization
+ A graphical interface shows:
 
-predicted grades,
+ predicted grades,
 
-the impact of changing study hours,
+ the impact of changing study hours,
 
-a recommended study plan.
+ a recommended study plan.
 
-6. Artificial Intelligence Techniques Used
-6.1 Supervised Learning (Prediction Model)
+### 6. Artificial Intelligence Techniques Used
+## 6.1 Supervised Learning (Prediction Model)
 
-A regression-based model is trained to predict future exam scores.
+ A regression-based model is trained to predict future exam scores.
 
-Why this model?
+ Why this model?
 
-Interpretable results
+ Interpretable results
 
-Stable behavior
+ Stable behavior
 
-Clear relationship between inputs and output
+ Clear relationship between inputs and output
 
-Key properties:
+ Key properties:
 
-Studying more hours never decreases the predicted grade
+ Studying more hours never decreases the predicted grade
 
-Previous performance strongly influences predictions
+ Previous performance strongly influences predictions
 
-Attendance acts as a moderating factor
+ Attendance acts as a moderating factor
 
-6.2 Multi-Armed Bandit (UCB Algorithm)
+## 6.2 Multi-Armed Bandit (UCB Algorithm)
 
-To allocate study hours, the project uses a Multi-Armed Bandit approach, specifically Upper Confidence Bound (UCB).
+ To allocate study hours, the project uses a Multi-Armed Bandit approach, specifically Upper Confidence Bound (UCB).
 
-Each course is treated as an “arm”, and each study hour is a decision.
+ Each course is treated as an “arm”, and each study hour is a decision.
 
-The algorithm balances:
+ The algorithm balances:
 
-Exploitation: focusing on subjects with high expected improvement
+ Exploitation: focusing on subjects with high expected improvement
 
-Exploration: occasionally investing time in less-studied subjects
+ Exploration: occasionally investing time in less-studied subjects
 
-This directly reflects CS188 concepts such as:
+ This directly reflects CS188 concepts such as:
 
-rational agents,
+ rational agents,
 
-utility maximization,
+ utility maximization,
 
-decision-making under uncertainty.
+ decision-making under uncertainty.
 
-7. Why Not MDPs or Bayesian Networks?
+### 7. Why Not MDPs or Bayesian Networks?
 
-Although MDPs and Bayesian Networks are powerful AI tools, they were not chosen for this project because:
+ Although MDPs and Bayesian Networks are powerful AI tools, they were not chosen for this project because:
 
-The dataset does not contain explicit temporal transitions required for MDPs
+ The dataset does not contain explicit temporal transitions required for MDPs
 
-There is no strong causal structure needed for Bayesian Networks
+ There is no strong causal structure needed for Bayesian Networks
 
-The problem is incremental and resource-based, which fits Bandits better
+ The problem is incremental and resource-based, which fits Bandits better
 
-The Bandit approach is:
+ The Bandit approach is:
 
-simpler,
+ simpler,
 
-more appropriate,
+ more appropriate,
 
-easier to explain and justify academically.
+ easier to explain and justify academically.
+ 
+### 8. User Interaction
 
-8. User Interaction
+ The user can input:
 
-The user can input:
+ list of courses (units),
 
-list of courses (units),
+ perceived difficulty or priority,
 
-perceived difficulty or priority,
+ last known grade,
 
-last known grade,
+ weekly study hours,
 
-weekly study hours,
+ attendance level.
 
-attendance level.
+ The system dynamically updates:
 
-The system dynamically updates:
+ predicted grades,
 
-predicted grades,
+ recommended study hours per course,
 
-recommended study hours per course,
+ visual charts showing the effect of study time.
 
-visual charts showing the effect of study time.
+### 9. Project Architecture
 
-9. Project Architecture
+ The system is organized into logical layers:
 
-The system is organized into logical layers:
+ Data Layer
 
-Data Layer
+ Dataset loading
 
-Dataset loading
+ User inputs
 
-User inputs
+ Model Layer
 
-Model Layer
+ Supervised prediction model
 
-Supervised prediction model
+ Decision Layer
 
-Decision Layer
+ Bandit-based allocation algorithm
 
-Bandit-based allocation algorithm
+ Application Layer
 
-Application Layer
+ Interactive interface
 
-Interactive interface
+ Visual feedback
 
-Visual feedback
+ This modular design improves readability, extensibility, and evaluation clarity.
 
-This modular design improves readability, extensibility, and evaluation clarity.
+### 10. Results
 
-10. Results
+ Predictions respond realistically to changes in study hours
 
-Predictions respond realistically to changes in study hours
+ Study plans adapt dynamically to user input
 
-Study plans adapt dynamically to user input
+ The system behaves rationally and consistently
 
-The system behaves rationally and consistently
+ Decisions are explainable, not black-box
 
-Decisions are explainable, not black-box
+### 11. Educational Value
 
-11. Educational Value
+ This project demonstrates how AI concepts can be applied to real-world problems by combining:
+ 
+ learning from data,
 
-This project demonstrates how AI concepts can be applied to real-world problems by combining:
+ rational decision-making,
 
-learning from data,
+ user-centered design.
 
-rational decision-making,
+ It emphasizes understanding and correctness rather than unnecessary algorithmic complexity.
 
-user-centered design.
+### 12. Conclusion
 
-It emphasizes understanding and correctness rather than unnecessary algorithmic complexity.
+ StudyBuddy is an intelligent study planning system that:
 
-12. Conclusion
+ learns from real data,
 
-StudyBuddy is an intelligent study planning system that:
+ predicts academic outcomes,
 
-learns from real data,
+ and supports better decision-making.
+ 
+ The project successfully applies core AI principles from CS188 in a realistic, explainable, and academically sound way.
 
-predicts academic outcomes,
-
-and supports better decision-making.
-
-The project successfully applies core AI principles from CS188 in a realistic, explainable, and academically sound way.
-
-13. How to Run (Optional)
+### 13. How to Run (Optional)
+```powershell
 pip install -r requirements.txt
 python -m scripts.train_model
 streamlit run app.py
-
+```
 Author
 
 João M.
